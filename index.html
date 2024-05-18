@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض طيبه</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             direction: rtl;
@@ -18,23 +14,18 @@
         }
         
         header {
-            background-color: #3E2723; /* لون بني غامق */
+            background-color: #8B4513;
+            background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%);
             color: white;
-            z-index: 1000;
-            position: fixed;
-            top: 0;
-            width: 100%;
             padding: 10px 0;
             text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-        section {
-            
-            margin-top: 60px; /* لتجنب تغطية المحتوى من قبل الشريط الثابت */
+            position: relative;
+            z-index: 2;
+          margin: 0;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
         
         .logo {
@@ -85,16 +76,16 @@
         .dropdown-menu {
             display: none;
             position: absolute;
-            margin-top: 8px;
+          margin-top: 3px;
             top: calc(100% + 11px);
             right: -25px;
-            background-color: rgba(255, 255, 255, 0.6);
-            width: 200px;
+            background-color: rgba(200, 200, 200, 0.5);
+            min-width: 200px;
             border-radius: 0 0 0 20px;
             z-index: 1;
             opacity: 0;
             transform: translateY(0px);
-            transition: opacity 0.3s ease, transform 0.6s ease, backdrop-filter 0.3s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease, backdrop-filter 0.6s ease;
             backdrop-filter: blur(0);
         }
         
@@ -113,7 +104,7 @@
         }
 
         .dropdown-menu a {
-            color: #3E2723;
+            color: #8B4513;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
@@ -121,125 +112,20 @@
 
         .dropdown-menu a:hover {
             background-color: rgba(130, 130, 130, 0.5);
-            border-radius: 0 0 0 20px;
+           
+          border-radius:0 0 0 20px;
         }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1%;
-            justify-content: center; /* لضمان أن العناصر في الوسط */
-            padding: 20px;
-        }
-
-        .pro {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
-            background-color: #ffffff;
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            align-items: center;
-            width: 250px;
-            box-sizing: border-box;
-            margin: 2%;
-            transition: transform 0.2s ease;
-        }
-
-        .pro:hover {
-            transform: translateY(-10px);
-        }
-
-        @media (min-width: 200px) and (max-width: 499px) {
-            .pro {
-                flex: 0 1 45%; /* يجعل كل عنصرين بجوار بعضهما في الشاشات الصغيرة */
-            }
-        }
-
-        @media (min-width: 500px) and (max-width: 899px) {
-            .pro {
-                flex: 0 1 32%; /* يجعل كل ثلاثة عناصر بجوار بعضهما في الشاشات المتوسطة */
-            }
-        }
-
-        @media (min-width: 900px) {
-            .pro {
-                flex: 0 1 23%; /* يجعل كل أربعة عناصر بجوار بعضهما في الشاشات الكبيرة */
-            }
-        }
-
-        h2 {
-            text-align: center;
-            color: #3E2723;
-            margin-top: 20px;
-            background-color: rgba(155, 155, 155, 0.3);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            
-        }
-
-        img { border-radius: 10px; margin-top: 10px; margin-bottom: 10px; width: 80%; height: auto; max-width: 200px; max-height: 200px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); }
-
-        .product-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #3E2723;
-        }
-
-        .product-price {
-            font-size: 16px;
-            color: #B12704;
-            margin: 5px 0;
-        }
-
-        .product-old-price {
-            text-decoration: line-through;
-            color: #767676;
-            font-size: 14px;
-        }
-
-        .product-discount {
-            color: #B12704;
-            font-size: 14px;
-            margin-left: 5px;
-        }
-
-        .product-rating {
-            color: #FFD700;
-            margin: 5px 0;
-        }
-
-        .product-rating i {
-            margin-right: 2px;
-        }
-
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #3E2723;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .floating-button:hover {
-            background-color: #5D4037;
-        }
+  a{
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  #g {
+    box-shadow: none;
+  }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">معرض طيبة </div>
+        <div class="logo">Teba Store</div>
         <div class="menu-icons">
             <div class="dropdown">
                 <div class="menu-icon" onclick="toggleDropdown()">
@@ -248,468 +134,16 @@
                     <span></span>
                 </div>
                 <div class="dropdown-menu" id="dropdownMenu">
-                    
-                    <a href="#1">النجف</a>
-                    <a href="#2">الانتيكات</a>
-                    <a href="#3">السجاد</a>
-                    <a href="#4">المفارش</a>
+                    <a href="#">السجاد</a>
+                  
+                    <a href="#">النجف</a>
+                    <a href="#">الانتيكات</a>
+                    <a id="g" href="#">المفارش</a>
                 </div>
             </div>
         </div>
     </header>
-  <section id="1">
-    <h2>النجف</h2>
-    <hr>
-    <div class="container">
-        <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src="images/17.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <div class="pro">
-            <img src="images/18.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <div class="pro">
-            <img src="images/19.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/20.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/21.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاخرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/22.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/23.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/24.jpg" alt="Lamp">
-            <div class="product-title">نجفة فاجرة</div>
-            <div class="product-price">$1500</div>
-                        <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <!-- تكرار البلوك حسب الحاجة -->
-    </div></section>
-    <section id="2">
-    <h2>الانتيكات</h2>
-    <div class="container">
-        <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src="images/25.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/26.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/27.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/28.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/29.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/30.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/31.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/32.jpg" alt="Antique">
-            <div class="product-title">تحفة أثرية</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <!-- تكرار البلوك حسب الحاجة -->
-    </div></section>
-    <section id="3">
-     <h2> السجاد</h2>
-    <div class="container">
-        <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src="images/9.jpg" alt="Carpet">
-            <div class="product-title"> سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <div class="pro">
-            <img src="images/10.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/11.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/12.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/13.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/14.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro"">
-            <img src="images/15.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/16.jpg" alt="Carpet">
-            <div class="product-title">سجادة فاخرة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <!-- تكرار البلوك حسب الحاجة -->
-    </div>
-    </section>
-    <section id="4">
-    <h2>المفارش</h2>
-    <div class="container">
-        <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src="images/1.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/2.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-       <div class="pro">
-            <img src="images/3.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/4.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/5.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/6.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/7.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div><div class="pro">
-            <img src="images/8.jpg" alt="Table Cloth">
-            <div class="product-title">مفرش طاولة</div>
-            <div class="product-price">$1500</div>
-            <div class="product-old-price">$2000</div>
-            <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        </section>
-        <!-- تكرار البلوك حسب الحاجة -->
-    </div>
-
-    <button class="floating-button" onclick="makeCall()"><i class="fas fa-phone"></i></button>
+  
 
     <script>
         function toggleDropdown() {
@@ -721,7 +155,7 @@
                 setTimeout(function() {
                     dropdownMenu.classList.remove("closed");
                     dropdownMenu.style.display = "none";
-                }, 200);
+                }, 600);
                 menuIcon.classList.remove("open");
             } else {
                 dropdownMenu.style.display = "block";
@@ -731,11 +165,6 @@
                 menuIcon.classList.add("open");
             }
         }
-
-        function makeCall() {
-            window.location.href = 'tel:0503924588';
-        }
     </script>
 </body>
 </html>
-

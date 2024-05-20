@@ -10,29 +10,7 @@
         html {
             scroll-behavior: smooth;
         }
-        #preloader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: #fff;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3E2723; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             direction: rtl;
@@ -373,15 +351,119 @@ border-radius: 50%;
 .floating-menu.show .floating-button-small:nth-child(3) {
     transform: translate(-70px, -70px);
 }
+ #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+      /* تحريك العنصر للاختفاء */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.hidden {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* تحريك العنصر للظهور */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#content.show {
+    animation: fadeIn 0.5s forwards;
+}
+
+        /* تنسيق دائرة التحميل */
+        .loader {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: 16px solid rgba(0,0,0,0.05);
+            border-radius: 50%;
+            border-top: 16px solid #3E2723;
+            animation: spin 2s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fill {
+            0% { border-color: rgba(0,0,0,0.1); }
+            100% { border-color: #3E2723; }
+        }
+
+        /* تنسيق زر "Go" داخل دائرة التحميل */
+        #goButton {
+            position: absolute;
+            width: calc(100% - 32px);
+            height: calc(100% - 32px);
+            background-color: transparent;
+            color: #3E2723;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #goButton.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loader.animate {
+            animation: fill 0.5s forwards;
+        } 
+
     </style>
 </head>
 <body>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-
+    
+    <div id="preloader"> <div class="loader" id="loader"> <button id="goButton">Go</button> </div> </div>
+    <!-- عنصر الصوت -->
+    <audio id="welcomeAudio" src="bell.wav" type="audio/mp3"></audio>
     <!-- Main Content -->
-    <div id="content" style="display: none;">
+    <div id="content" style>
     <header>
         <div class="logo">Teba Store </div>
         <div class="menu-icons">
@@ -401,6 +483,7 @@ border-radius: 50%;
             </div>
         </div>
     </header>
+    
   <section id="1">
     <h2>النجف</h2>
     <hr>
@@ -866,18 +949,46 @@ border-radius: 50%;
         <button class="floating-button-small" onclick="openFacebook()"><img id="fa" src="face.png" alt=""></button>
         <button class="floating-button-small" onclick="makeLandlineCall()"><img id="la" src="logo.png" alt=""></button>
     </div>
-</div></div>
+</div>
+</div>
 
     <script>
-        window.addEventListener('load', function() {
-    var preloader = document.getElementById('preloader');
-    var content = document.getElementById('content');
-    preloader.style.display = 'none';
-    content.style.display = 'block';
+var goButton = document.getElementById('goButton');
+var preloader = document.getElementById('preloader');
+var loader = document.getElementById('loader');
+var audio = document.getElementById('welcomeAudio');
+var content = document.getElementById('content');
+
+// إعداد مؤقت لمدة ثانيتين لإظهار الزر بعد انتهاء التحميل
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        // إظهار الزر
+        goButton.classList.add('show');
+        // إضافة الرسوم المتحركة لتلوين الدائرة بعد انتهاء التحميل
+        loader.classList.add('animate');
+        // عند النقر على الزر
+        goButton.addEventListener('click', function() {
+            // تشغيل الصوت
+            audio.play()
+                .then(() => {
+                    console.log('تم تشغيل الصوت بنجاح');
+                })
+                .catch(error => {
+                    console.error('حدث خطأ أثناء محاولة تشغيل الصوت:', error);
+                });
+            // إخفاء شاشة التحميل بعد انتهاء الأنيميشن
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                // عرض المحتوى بانيميشن بعد انتهاء الأنيميشن
+                setTimeout(() => {
+                    content.classList.add('show');
+                }, 500); // تأخير العرض حتى انتهاء الأنيميشن
+            }, 500); // 500 مللي ثانية = مدة الأنيميشن
+        });
+    }, 2000); // 2000 مللي ثانية = ثانيتين
 });
 
-
-        function toggleDropdown() {
+  function toggleDropdown() {
             var dropdownMenu = document.getElementById("dropdownMenu");
             var menuIcon = document.querySelector(".menu-icon");
             if (dropdownMenu.classList.contains("open")) {

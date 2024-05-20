@@ -55,7 +55,7 @@
             align-items: center;
 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
+            -webkit-tap-highlight-color: transparent;        }
         section {
 
             margin-top: 60px; /* لتجنب تغطية المحتوى من قبل الشريط الثابت */
@@ -114,10 +114,13 @@
     }
 
         .menu-icon span {
+        
             display: block;
             height: 4px;
             background-color: white;
             transition: transform 0.6s ease, opacity 0.2s ease;
+            
+           -webkit-tap-highlight-color: transparent;
         }
 
         .menu-icon.open span:nth-child(1) {
@@ -146,6 +149,8 @@
             transform: translateY(0px);
             transition: opacity 0.3s ease, transform 0.6s ease, backdrop-filter 0.3s ease;
             backdrop-filter: blur(0);
+            -webkit-tap-highlight-color: transparent;
+            
         }
 
         .dropdown-menu.open {
@@ -167,6 +172,7 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .dropdown-menu a:hover {
@@ -263,28 +269,110 @@
             margin-right: 2px;
         }
 
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #3E2723;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+     .floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px; /* نفس عرض الزر الرئيسي */
+    height: 50px; /* نفس ارتفاع الزر الرئيسي */
+}
+#wa {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+    
+}
 
-        .floating-button:hover {
-            background-color: #5D4037;
-        }
+
+#fa {
+    width: 55px;
+height: 55px;
+border-radius: 50%;
+}
+
+#la {
+    width: 55px;
+height: 55px;
+border-radius: 50%;
+}
+
+.floating-button {
+    width: 50px;
+    outline: none;
+    height: 50px;
+    background-color: #3E2723;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.floating-button:hover {
+    background-color: #5D4037;
+}
+
+.floating-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-menu.show .floating-button-small {
+    opacity: 1;
+    transform: translate(0, 0);
+    pointer-events: auto;
+}
+
+.floating-button-small {
+    position: absolute;
+    outline: none;
+    width: 50px;
+    pointer-events: none;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    height: 50px;
+    background-color: #5D4037;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* الزر الأول - فوق */
+.floating-menu.show .floating-button-small:nth-child(1) {
+    transform: translate(0, -100px);
+    
+}
+
+/* الزر الثاني - على اليسار */
+.floating-menu.show .floating-button-small:nth-child(2) {
+    transform: translate(-100px, 0);
+}
+
+/* الزر الثالث - بزاوية 45 درجة */
+.floating-menu.show .floating-button-small:nth-child(3) {
+    transform: translate(-70px, -70px);
+}
     </style>
 </head>
 <body>
@@ -771,7 +859,14 @@
     <img src="" alt="صورة مكبرة" class="enlarged-image">
   </div>
 
-    <button class="floating-button" onclick="makeCall()"><i class="fas fa-phone"></i></button></div>
+   <div class="floating-container">
+    <button class="floating-button" onclick="toggleMenu()"><i class="fas fa-phone"></i></button>
+    <div class="floating-menu">
+        <button class="floating-button-small" onclick="openWhatsApp()"><img id="wa" src="images.png" alt=""></button>
+        <button class="floating-button-small" onclick="openFacebook()"><img id="fa" src="face.png" alt=""></button>
+        <button class="floating-button-small" onclick="makeLandlineCall()"><img id="la" src="logo.png" alt=""></button>
+    </div>
+</div></div>
 
     <script>
         window.addEventListener('load', function() {
@@ -802,9 +897,22 @@
             }
         }
 
-        function makeCall() {
-            window.location.href = 'tel:0503924588';
-        }
+        function toggleMenu() {
+    const menu = document.querySelector('.floating-menu');
+    menu.classList.toggle('show');
+}
+
+function openWhatsApp() {
+    window.location.href = 'https://wa.me/+201010403045';
+}
+
+function openFacebook() {
+    window.location.href = 'https://www.facebook.com/Tiabastore?mibextid=ZbWKwL';
+}
+
+function makeLandlineCall() {
+    window.location.href = 'tel:0503924588';
+}
         document.addEventListener('DOMContentLoaded', function() {
       const imageContainers = document.querySelectorAll('.image-container');
       const overlay = document.getElementById('overlay');

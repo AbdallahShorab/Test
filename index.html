@@ -87,6 +87,31 @@
             height: 24px;
             width: 30px;
         }
+         .overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .enlarged-image {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .show-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
 
         .menu-icon span {
             display: block;
@@ -293,8 +318,8 @@
     <hr>
     <div class="container">
         <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src=" 17.jpg" alt="Lamp">
+        <div class="pro image-container">
+            <img src=" 17.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -307,8 +332,9 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
         </div>
-        <div class="pro">
-            <img src=" 18.jpg" alt="Lamp">
+        
+        <div class="pro image-container">
+            <img src=" 18.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -321,8 +347,8 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
         </div>
-        <div class="pro">
-            <img src=" 19.jpg" alt="Lamp">
+        <div class="pro image-container">
+            <img src=" 19.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -334,21 +360,21 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 20.jpg" alt="Lamp">
+        </div><div class="pro image-container">
+            <img src=" 20.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
             <div class="product-discount">(توفير 25%)</div>
-            <div class="product-rating">
+            <div class="product-rating">"
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 21.jpg" alt="Lamp">
+        </div><div class="pro image-container">
+            <img src=" 21.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاخرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -360,8 +386,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 22.jpg" alt="Lamp">
+        </div><div class="pro image-container">
+            <img src=" 22.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -373,8 +399,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 23.jpg" alt="Lamp">
+        </div><div class="pro image-container">
+            <img src=" 23.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -386,8 +412,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 24.jpg" alt="Lamp">
+        </div><div class="pro image-container">
+            <img src=" 24.jpg" alt="Lamp" class="image">
             <div class="product-title">نجفة فاجرة</div>
             <div class="product-price">$1500</div>
                         <div class="product-old-price">$2000</div>
@@ -399,15 +425,16 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div>
+            
+       
         <!-- تكرار البلوك حسب الحاجة -->
     </div></section>
     <section id="2">
     <h2>الانتيكات</h2>
     <div class="container">
         <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src=" 25.jpg" alt="Antique">
+        <div class="pro image-container">
+            <img src=" 25.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -419,8 +446,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 26.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 26.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -432,8 +459,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 27.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 27.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -445,8 +472,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 28.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 28.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -458,8 +485,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 29.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 29.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -471,8 +498,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 30.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 30.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -484,8 +511,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 31.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 31.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -497,8 +524,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 32.jpg" alt="Antique">
+        </div><div class="pro image-container">
+            <img src=" 32.jpg" alt="Antique" class="image">
             <div class="product-title">تحفة أثرية</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -517,8 +544,8 @@
      <h2> السجاد</h2>
     <div class="container">
         <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src=" 9.jpg" alt="Carpet">
+        <div class="pro image-container">
+            <img src=" 9.jpg" alt="Carpet" class="image">
             <div class="product-title"> سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -531,8 +558,8 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
         </div>
-        <div class="pro">
-            <img src=" 10.jpg" alt="Carpet">
+        <div class="pro image-container">
+            <img src=" 10.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -544,8 +571,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 11.jpg" alt="Carpet">
+        </div><div class="pro image-container">
+            <img src=" 11.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -557,8 +584,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 12.jpg" alt="Carpet">
+        </div><div class="pro image-container">
+            <img src=" 12.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -570,8 +597,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 13.jpg" alt="Carpet">
+        </div><div class="pro image-container">
+            <img src=" 13.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -583,8 +610,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 14.jpg" alt="Carpet">
+        </div><div class="pro image-container">
+            <img src=" 14.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -596,8 +623,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro"">
-            <img src=" 15.jpg" alt="Carpet">
+        </div><div class="pro image-container"">
+            <img src=" 15.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -609,8 +636,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 16.jpg" alt="Carpet">
+        </div><div class="pro image-container">
+            <img src=" 16.jpg" alt="Carpet" class="image">
             <div class="product-title">سجادة فاخرة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -630,8 +657,8 @@
     <h2>المفارش</h2>
     <div class="container">
         <!-- تكرار البلوك 8 مرات -->
-        <div class="pro">
-            <img src=" 1.jpg" alt="Table Cloth">
+        <div class="pro image-container">
+            <img src=" 1.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -643,8 +670,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 2.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 2.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -657,8 +684,8 @@
                 <i class="fas fa-star-half-alt"></i>
             </div>
         </div>
-       <div class="pro">
-            <img src=" 3.jpg" alt="Table Cloth">
+       <div class="pro image-container">
+            <img src=" 3.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -670,8 +697,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 4.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 4.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -683,8 +710,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 5.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 5.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -696,8 +723,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 6.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 6.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -709,8 +736,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 7.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 7.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -722,8 +749,8 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-        </div><div class="pro">
-            <img src=" 8.jpg" alt="Table Cloth">
+        </div><div class="pro image-container">
+            <img src=" 8.jpg" alt="Table Cloth" class="image">
             <div class="product-title">مفرش طاولة</div>
             <div class="product-price">$1500</div>
             <div class="product-old-price">$2000</div>
@@ -739,6 +766,10 @@
         </section>
         <!-- تكرار البلوك حسب الحاجة -->
     </div>
+     </div>
+        <div id="overlay" class="overlay">
+    <img src="" alt="صورة مكبرة" class="enlarged-image">
+  </div>
 
     <button class="floating-button" onclick="makeCall()"><i class="fas fa-phone"></i></button></div>
 
@@ -749,6 +780,7 @@
     preloader.style.display = 'none';
     content.style.display = 'block';
 });
+
 
         function toggleDropdown() {
             var dropdownMenu = document.getElementById("dropdownMenu");
@@ -773,6 +805,23 @@
         function makeCall() {
             window.location.href = 'tel:0503924588';
         }
+        document.addEventListener('DOMContentLoaded', function() {
+      const imageContainers = document.querySelectorAll('.image-container');
+      const overlay = document.getElementById('overlay');
+      const enlargedImage = overlay.querySelector('.enlarged-image');
+
+      imageContainers.forEach(function(container) {
+        container.addEventListener('click', function() {
+          const imageSrc = container.querySelector('.image').src;
+          enlargedImage.src = imageSrc;
+          overlay.classList.add('show-overlay');
+        });
+      });
+
+      overlay.addEventListener('click', function() {
+        overlay.classList.remove('show-overlay');
+      });
+    });
     </script>
 </body>
 </html>

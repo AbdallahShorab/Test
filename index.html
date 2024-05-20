@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض طيبه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         html {
@@ -39,7 +40,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        
+
         header {
             background-color: #3E2723; /* لون بني غامق */
             color: white;
@@ -52,19 +53,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            
+
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
         section {
-            
+
             margin-top: 60px; /* لتجنب تغطية المحتوى من قبل الشريط الثابت */
         }
-        
+
         .logo {
             font-size: 24px;
             margin: auto;
+            font-family: 'Pacifico', cursive;
         }
-        
+
         .menu-icons {
             display: flex;
             align-items: center;
@@ -73,7 +75,7 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        
+
         .menu-icon {
             font-size: 24px;
             cursor: pointer;
@@ -92,7 +94,7 @@
             background-color: white;
             transition: transform 0.6s ease, opacity 0.2s ease;
         }
-        
+
         .menu-icon.open span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
@@ -104,7 +106,7 @@
         .menu-icon.open span:nth-child(3) {
             transform: rotate(-45deg) translate(5px, -5px);
         }
-        
+
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -112,7 +114,7 @@
             top: calc(100% + 11px);
             right: -25px;
             background-color: rgba(255, 255, 255, 0.6);
-            width: 200px;
+            width: 25em;
             border-radius: 0 0 0 20px;
             z-index: 1;
             opacity: 0;
@@ -120,14 +122,14 @@
             transition: opacity 0.3s ease, transform 0.6s ease, backdrop-filter 0.3s ease;
             backdrop-filter: blur(0);
         }
-        
+
         .dropdown-menu.open {
             display: block;
             opacity: 1;
             transform: translateY(0px);
             backdrop-filter: blur(5px);
         }
-        
+
         .dropdown-menu.closed {
             display: block;
             opacity: 0;
@@ -197,7 +199,7 @@
             margin-top: 20px;
             background-color: rgba(155, 155, 155, 0.3);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            
+
         }
 
         img { border-radius: 10px; margin-top: 10px; margin-bottom: 10px; width: 80%; height: auto; max-width: 200px; max-height: 200px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); }
@@ -268,7 +270,7 @@
     <!-- Main Content -->
     <div id="content" style="display: none;">
     <header>
-        <div class="logo">معرض طيبة </div>
+        <div class="logo">Teba Store </div>
         <div class="menu-icons">
             <div class="dropdown">
                 <div class="menu-icon" onclick="toggleDropdown()">
@@ -277,7 +279,7 @@
                     <span></span>
                 </div>
                 <div class="dropdown-menu" id="dropdownMenu">
-                    
+
                     <a href="#1">النجف</a>
                     <a href="#2">الانتيكات</a>
                     <a href="#3">السجاد</a>
@@ -774,4 +776,3 @@
     </script>
 </body>
 </html>
-

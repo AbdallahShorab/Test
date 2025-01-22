@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض طيبه</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3E2723;
+            color: white;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        section {
+            margin-top: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            margin: auto;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .menu-icons {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 20px;
+            color: #FFD700;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            width: 30px;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 4px;
+            background-color: white;
+            transition: transform 0.6s ease, opacity 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-icon.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            margin-top: 8px;
+            top: calc(100% + 11px);
+            right: -25px;
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 25em;
+            border-radius: 0 0 0 20px;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(0px);
+            transition: opacity 0.3s ease, transform 0.6s ease, backdrop-filter 0.3s ease;
+            backdrop-filter: blur(0);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0px);
+            backdrop-filter: blur(5px);
+        }
+
+        .dropdown-menu.closed {
+            display: block;
+            opacity: 0;
+            transform: translateY(0px);
+            backdrop-filter: blur(0);
+        }
+
+        .dropdown-menu a {
+            color: #3E2723;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(130, 130, 130, 0.5);
+            border-radius: 0 0 0 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1%;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .pro {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+            background-color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            align-items: center;
+            width: 250px;
+            box-sizing: border-box;
+            margin: 2%;
+            transition: transform 0.2s ease;
+        }
+
+        .pro:hover {
+            transform: translateY(-10px);
+        }
+
+        @media (min-width: 200px) and (max-width: 499px) {
+            .pro {
+                flex: 0 1 45%;
+            }
+        }
+
+        @media (min-width: 500px) and (max-width: 899px) {
+            .pro {
+                flex: 0 1 32%;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .pro {
+                flex: 0 1 23%;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            color: #3E2723;
+            margin-top: 20px;
+            background-color: rgba(155, 155, 155, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            height: auto;
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #3E2723;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #B12704;
+            margin: 5px 0;
+        }
+
+        .product-old-price {
+            text-decoration: line-through;
+            color: #767676;
+            font-size: 14px;
+        }
+
+        .product-discount {
+            color: #B12704;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .product-rating {
+            color: #FFD700;
+            margin: 5px 0;
+        }
+
+        .product-rating i {
+            margin-right: 2px;
+        }
+
+        .floating-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #wa {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        #fa {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+        }
+
+        #la {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+        }
+
+        .floating-button {
+            width: 50px;
+            outline: none;
+            height: 50px;
+            background-color: #3E2723;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .floating-button:hover {
+            background-color: #5D4037;
+        }
+
+        .floating-menu {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-menu.show .floating-button-small {
+            opacity: 1;
+            transform: translate(0, 0);
+            pointer-events: auto;
+        }
+
+        .floating-button-small {
+            position: absolute;
+            outline: none;
+            width: 50px;
+            pointer-events: none;
+            margin-right: 30px;
+            margin-bottom: 30px;
+            height: 50px;
+            background-color: #5D4037;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .floating-menu.show .floating-button-small:nth-child(1) {
+            transform: translate(0, -100px);
+        }
+
+        .floating-menu.show .floating-button-small:nth-child(2) {
+            transform: translate(-100px, 0);
+        }
+
+        .floating-menu.show .floating-button-small:nth-child(3) {
+            transform: translate(-70px, -70px);
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .hidden {
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #content.show {
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .loader {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: 16px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            border-top: 16px solid #3E2723;
+            animation: spin 2s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fill {
+            0% {
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+            100% {
+                border-color: #3E2723;
+            }
+        }
+
+        .loader.animate {
+            animation: fill 0.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader" id="loader"></div>
+    </div>
+    <audio id="welcomeAudio" src="bell.wav" type="audio/mp3"></audio>
+    <div id="content">
+        <header>
+            <div class="logo">Teba Store</div>
+            <div class="menu-icons">
+                <div class="dropdown">
+                    <div class="menu-icon" onclick="toggleDropdown()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#1">النجف</a>
+                        <a href="#2">الانتيكات</a>
+                        <a href="#3">السجاد</a>
+                        <a href="#4">المفارش</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="1">
+            <h2>النجف</h2>
+            <hr>
+            <div class="container">
+                <div class="pro image-container">
+                    <img src="17.jpg" alt="Lamp" class="image" loading="lazy">
+                    <div class="product-title">نجفة فاجرة</div>
+                    <div class="product-price">$1500</div>
+                    <div class="product-old-price">$2000</div>
+                    <div class="product-discount">(توفير 25%)</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <!-- Repeat other product blocks similarly -->
+            </div>
+        </section>
+
+        <section id="2">
+            <h2>الانتيكات</h2>
+            <div class="container">
+                <div class="pro image-container">
+                    <img src="25.jpg" alt="Antique" class="image" loading="lazy">
+                    <div class="product-title">تحفة أثرية</div>
+                    <div class="product-price">$1500</div>
+                    <div class="product-old-price">$2000</div>
+                    <div class="product-discount">(توفير 25%)</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <!-- Repeat other product blocks similarly -->
+            </div>
+        </section>
+
+        <section id="3">
+            <h2>السجاد</h2>
+            <div class="container">
+                <div class="pro image-container">
+                    <img src="9.jpg" alt="Carpet" class="image" loading="lazy">
+                    <div class="product-title">سجادة فاخرة</div>
+                    <div class="product-price">$1500</div>
+                    <div class="product-old-price">$2000</div>
+                    <div class="product-discount">(توفير 25%)</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <!-- Repeat other product blocks similarly -->
+            </div>
+        </section>
+
+        <section id="4">
+            <h2>المفارش</h2>
+            <div class="container">
+                <div class="pro image-container">
+                    <img src="1.jpg" alt="Table Cloth" class="image" loading="lazy">
+                    <div class="product-title">مفرش طاولة</div>
+                    <div class="product-price">$1500</div>
+                    <div class="product-old-price">$2000</div>
+                    <div class="product-discount">(توفير 25%)</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <!-- Repeat other product blocks similarly -->
+            </div>
+        </section>
+
+        <div class="floating-container">
+            <button class="floating-button" onclick="toggleMenu()"><i class="fas fa-phone"></i></button>
+            <div class="floating-menu">
+                <button class="floating-button-small" onclick="openWhatsApp()"><img id="wa" src="images.png" alt=""></button>
+                <button class="floating-button-small" onclick="openFacebook()"><img id="fa" src="face.png" alt=""></button>
+                <button class="floating-button-small" onclick="makeLandlineCall()"><img id="la" src="logo.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var preloader = document.getElementById('preloader');
+        var audio = document.getElementById('welcomeAudio');
+        var content = document.getElementById('content');
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                audio.play()
+                    .then(() => {
+                        console.log('تم تشغيل الصوت بنجاح');
+                    })
+                    .catch(error => {
+                        console.error('حدث خطأ أثناء محاولة تشغيل الصوت:', error);
+                    });
+
+                preloader.classList.add('hidden');
+                content.classList.add('show');
+            }, 2000);
+        });
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("dropdownMenu");
+            var menuIcon = document.querySelector(".menu-icon");
+            if (dropdownMenu.classList.contains("open")) {
+                dropdownMenu.classList.remove("open");
+                dropdownMenu.classList.add("closed");
+                setTimeout(function () {
+                    dropdownMenu.classList.remove("closed");
+                    dropdownMenu.style.display = "none";
